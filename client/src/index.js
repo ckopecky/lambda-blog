@@ -1,23 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import { createStore } from 'redux';
+
 import App from './App';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
-//import rootReducer from './reducers';
 
 import './index.css';
 
-//git const store = createStore({});
+import { createStore } from 'redux';
+
+import rootReducer from './reducers';
+
+const initialState = {};
+
+const store = createStore(initialState, rootReducer);
 
 ReactDOM.render(
-  <Provider>
+  <Provider store={store}>
     <Router>
       <App />
     </Router>
-  </Provider>, 
+  </Provider>,
   document.getElementById('root')
 );
-
-
 
