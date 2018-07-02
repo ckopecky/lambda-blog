@@ -11,11 +11,28 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minLength: 8
+        minlength: 4
+    },
+    student_cohort: { //should I make these ObjectId types too?? Hmmmmm......
+        type: String,
+        required: true
+    },
+    // skills: {  .....will concern myself with this later..... I need to stew on this problem a bit....
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Skill",
+    //     required: false
+    // },
+    // job_interests: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Interest",
+    //     required: false,
+    // },
+    about: {
+        type:String,
+        required: false
     }
-});
 
-const UserModel = mongoose.model("User", UserSchema, "users");
+});
 
 UserSchema.pre("save", function(next){
     return bcrypt
@@ -32,6 +49,10 @@ UserSchema.pre("save", function(next){
 UserSchema.methods.validatePassword = function(userGuess) {
     return bcrypt.compare(userGuess, this.password);
 }
+
+const UserModel = mongoose.model("User", UserSchema, "users");
+
+
 
 module.exports = UserModel;
 

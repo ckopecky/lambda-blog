@@ -8,6 +8,11 @@ const PostSchema = mongoose.Schema({
     post_body: {
         type: String,
         required: true
+    },
+    tag: {
+        type: mongoose.Schema.Types.ObjectId,
+        reqquired: true,
+        ref: "Tag"
     }
 });
 
