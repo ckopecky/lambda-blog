@@ -12,7 +12,7 @@ const userReducer = (state = initialState, action) => {
         {},
         state,
         { user: action.payload },
-        (user.isAuthenticated = true)
+        { isAuthenticated: true }
       );
     case LOGOUT_USER:
       return Object.assign({}, initialState);
