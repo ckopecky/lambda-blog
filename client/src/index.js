@@ -12,13 +12,13 @@ import App from './App';
 
 const initialState = {};
 
-const store = createStore(initialState, rootReducer);
+//const store = createStore(initialState, rootReducer);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>,
+  // <Provider store={store}>
+  <Router>
+    <App />
+  </Router>,
+  // </Provider>,
   document.getElementById('root')
 );
