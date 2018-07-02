@@ -1,5 +1,6 @@
 import { LOGIN_USER, LOGOUT_USER } from './types';
 
+//loginUser will need to make a request to the backend to authenticate the user
 const loginUser = user => {
   return {
     type: LOGIN_USER,
