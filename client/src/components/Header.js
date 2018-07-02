@@ -1,6 +1,6 @@
 import React from 'react';
 import Styled from 'styled-components';
-//import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 const HeaderContainer = Styled.div`
@@ -63,7 +63,7 @@ const Header = () => {
             <MenuLink>About</MenuLink>
             <MenuLink>Blog</MenuLink>
             <MenuLink>Apply</MenuLink>
-            <MenuLink>Login</MenuLink>
+            <Link to="/login"><MenuLink>Login</MenuLink></Link>
         </Links>
         </HeaderContainer>
         
