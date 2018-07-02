@@ -32,9 +32,24 @@ const updateID = (req, res) => {
       });
 };
 
+const post = (req, res) => {
+    const { blog_title, blog_body, tag} = req.body
+    Blogs
+      .create({ blog_title, blog_body, tag })
+      .then(blog => {
+          res.status(201).json(blog);
+      })
+      .catch(err => {
+          res.status(500).json({Error: err.message});
+      });
+  };
+
 router.route('/blogs/:id')
     .delete(deleteID)
     .put(updateID);
+
+router.route('/blogs')
+    .post(post);
 
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const BlogSchema = mongoose.Schema({
+const definition = {
     blog_title: {
         type: String,
         required: true
@@ -13,10 +13,20 @@ const BlogSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         reqquired: true,
         ref: "Tag"
+    },
+    createdOn: {
+        type: Date,
+        default: Date.now
     }
-});
+};
 
-const BlogModel = mongoose.model("Blog", BlogSchema, "blogs");
+const options = {
+    timestamps: true
+}
+
+const BlogSchema = new mongoose.Schema(definition, options);
+
+const BlogModel = mongoose.model("Blog", BlogSchema);
 
 module.exports = BlogModel;
 

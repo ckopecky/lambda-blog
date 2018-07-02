@@ -19,12 +19,12 @@ const UserSchema = mongoose.Schema({
         required: true
     },
     skills: {  
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: "Skill",
         required: false
     },
     job_interests: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: "Interest",
         required: false,
     },

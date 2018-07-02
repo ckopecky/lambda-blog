@@ -18,17 +18,7 @@ const get = (req, res) => {
     });
 };
 
-const post = (req, res) => {
-  const { blog_title, blog_body, tag} = req.body
-  Blogs
-    .create({ blog_title, blog_body, tag })
-    .then(blog => {
-        res.status(201).json(blog);
-    })
-    .catch(err => {
-        res.status(500).json({Error: err.message});
-    });
-};
+
 
 const getID = (req, res) => {
     const { id } = req.params;
@@ -50,7 +40,6 @@ const getID = (req, res) => {
 
 router.route('/')
     .get(get)
-    .post(post);
 
 router.route('/:id')
     .get(getID)
