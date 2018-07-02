@@ -10,14 +10,13 @@ import './index.css';
 
 import App from './App';
 
+const store = createStore({ rootReducer });
+
 ReactDOM.render(
-  <Provider>
+  <Provider store={store}>
     <Router>
       <App />
     </Router>
-  </Provider>, 
+  </Provider>,
   document.getElementById('root')
 );
-
-
-const store = createStore({});
