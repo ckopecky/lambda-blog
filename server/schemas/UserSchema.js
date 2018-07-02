@@ -11,11 +11,9 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minLength: 8
+        minlength: 4
     }
 });
-
-const UserModel = mongoose.model("User", UserSchema, "users");
 
 UserSchema.pre("save", function(next){
     return bcrypt
@@ -32,6 +30,10 @@ UserSchema.pre("save", function(next){
 UserSchema.methods.validatePassword = function(userGuess) {
     return bcrypt.compare(userGuess, this.password);
 }
+
+const UserModel = mongoose.model("User", UserSchema, "users");
+
+
 
 module.exports = UserModel;
 
