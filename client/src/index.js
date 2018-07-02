@@ -10,7 +10,9 @@ import './index.css';
 
 import App from './App';
 
-const store = createStore({ rootReducer });
+const initialState = {};
+
+const store = createStore(initialState, rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>
