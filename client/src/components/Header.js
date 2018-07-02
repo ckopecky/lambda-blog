@@ -1,5 +1,6 @@
 import React from 'react';
 import Styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 
 const HeaderContainer = Styled.div`
@@ -7,6 +8,9 @@ const HeaderContainer = Styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 800px) {
+        padding: 20px;
+    }
 `;
 const LogoContainer = Styled.a`
     display: flex;
@@ -29,7 +33,7 @@ const Links = Styled.div`
     justify-content: space-between;
 `;
 
-const Link = Styled.h3`
+const MenuLink = Styled.h3`
     font-family: 'PT Sans', sans-serif;
     font-style: light;
     font-weight: 700;
@@ -46,6 +50,7 @@ align: left;
 
 
 
+
 const Header = () => {
     return (
         <HeaderContainer>
@@ -54,10 +59,11 @@ const Header = () => {
         <LogoText>Lambda</LogoText>
         </LogoContainer>
         <Links>
-            <Link>Majors</Link>
-            <Link>About</Link>
-            <Link>Blog</Link>
-            <Link>Apply</Link>
+            <MenuLink>Majors</MenuLink>
+            <MenuLink>About</MenuLink>
+            <MenuLink>Blog</MenuLink>
+            <MenuLink>Apply</MenuLink>
+            <Link to="/login"><MenuLink>Login</MenuLink></Link>
         </Links>
         </HeaderContainer>
         
