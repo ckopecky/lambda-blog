@@ -7,9 +7,10 @@ const jwt = require('jsonwebtoken');
 
 const database = "LambdaBlogDb";
 const userRouter = require("./routes/unrestricted/userRouter");
-const postRouter = require("./routes/unrestricted/postRouter");
+const blogRouter = require("./routes/unrestricted/blogRouter");
 const tagRouter = require("./routes/unrestricted/tagRouter");
-const restrictedRouter = require("./routes/restricted/restrictedRouter");
+const restrictedRouter = require("./routes/restricted/userRouter");
+const cohortRouter = require("./routes/unrestricted/cohortRouter");
 
 mongoose.connect(`mongodb://localhost:27017/${database}`)
   .then(() => {
@@ -51,10 +52,11 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 
-// app.use('/api/posts', restricted, restrictedRouter);
-app.use('/api/user', userRouter);
-app.use('/api/posts', postRouter);
+app.use('/api/auth', restricted, restrictedRouter);
+app.use('/api/users', userRouter);
+app.use('/api/blogs', blogRouter);
 app.use('/api/tags', tagRouter);
+app.use('/api/cohorts', cohortRouter);
 
 const PORT = process.env.PORT || '5000';
 

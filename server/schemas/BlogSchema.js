@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const PostSchema = mongoose.Schema({
-    post_title: {
+const BlogSchema = mongoose.Schema({
+    blog_title: {
         type: String,
         required: true
     },
-    post_body: {
+    blog_body: {
         type: String,
         required: true
     },
@@ -16,7 +16,7 @@ const PostSchema = mongoose.Schema({
     }
 });
 
-const PostModel = mongoose.model("Post", PostSchema, "posts");
+const BlogModel = mongoose.model("Blog", BlogSchema, "blogs");
 
-module.exports = PostModel;
+module.exports = BlogModel;
 
