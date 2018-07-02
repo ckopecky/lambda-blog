@@ -7,6 +7,9 @@ const HeaderContainer = Styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 800px) {
+        padding: 20px;
+    }
 `;
 const LogoContainer = Styled.a`
     display: flex;
@@ -58,6 +61,7 @@ const Header = () => {
             <Link>About</Link>
             <Link>Blog</Link>
             <Link>Apply</Link>
+            <Link>Login</Link>
         </Links>
         </HeaderContainer>
         

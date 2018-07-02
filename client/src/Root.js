@@ -6,6 +6,8 @@ const Root = props => {
   return (
     <div>
       <Route path="/" component={App} />
+      <Route path="/login" component="Login" />
+      <Route path="/dashboard/:id" component={Dashboard} />
     </div>
   );
 };
