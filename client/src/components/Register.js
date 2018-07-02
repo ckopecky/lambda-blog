@@ -12,8 +12,6 @@ class Register extends Component {
       email: '',
       password: ''
     };
-    this.onInputChange = this.onInputChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -22,25 +20,22 @@ class Register extends Component {
     }
   }
 
-  onInputChange(e) {
+  onInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
-  onSubmit(e) {
+  };
+  onSubmit = e => {
     e.preventDefault();
     const newUser = {
       name: this.state.name,
       email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2
+      password: this.state.password
     };
 
     this.props.registerUser(newUser, this.props.history);
-  }
+  };
   render() {
-    const { errors } = this.state;
-
     return (
-      <form noValidate onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit}>
         <input
           placeholder="Name"
           name="name"
