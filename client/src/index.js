@@ -8,13 +8,16 @@ import rootReducer from './reducers';
 
 import './index.css';
 
-const store = createStore({});
+import App from './App';
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider>
     <Router>
       <App />
     </Router>
-  </Provider>,
+  </Provider>, 
   document.getElementById('root')
 );
+
+
+const store = createStore({});
