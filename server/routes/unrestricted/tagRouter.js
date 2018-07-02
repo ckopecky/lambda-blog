@@ -1,17 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const Posts = require("../../schemas/PostSchema")
+const Tags = require("../../schemas/TagSchema")
 
 
-// "/api/posts/"
+// "/api/Tags/"
 
 const get = (req, res) => {
-  Posts
+  Tags
     .find()
-    .populate('tag', { _id: 0 })
-    .then(posts => {
-        res.status(200).json(posts);
+    .then(Tags => {
+        res.status(200).json(Tags);
     })
     .catch(err => {
         res.status(500).json({Error: err.message});
@@ -19,11 +18,11 @@ const get = (req, res) => {
 };
 
 const post = (req, res) => {
-  const { post_title, post_body, tag} = req.body
-  Posts
-    .create({ post_title, post_body, tag })
-    .then(post => {
-        res.status(201).json(post);
+  const { tag_body } = req.body
+  Tags
+    .create({ tag_body })
+    .then(tag => {
+        res.status(201).json(tag);
     })
     .catch(err => {
         res.status(500).json({Error: err.message});
@@ -33,11 +32,10 @@ const post = (req, res) => {
 const getID = (req, res) => {
     const { id } = req.params;
     
-    Posts
+    Tags
       .findById(id)
-      .populate('tag', { _id: 0 })
-      .then(post => {
-          res.status(200).json(post);
+      .then(Tag => {
+          res.status(200).json(Tag);
       })
       .catch(err => {
           res.status(500).json({Error: err.message});
@@ -47,10 +45,10 @@ const getID = (req, res) => {
 const deleteID = (req, res) => {
     const { id } = req.params;
 
-    Posts
+    Tags
       .findByIdAndRemove(id)
-      .then(deletedPost => {
-          res.status(200).json({Success: `${id} successfully deleted from database`, deletedPost})
+      .then(deletedTag => {
+          res.status(200).json({Success: `${id} successfully deleted from database`, deletedTag})
       })
       .catch(err => {
           res.status(500).json({Error: err.message});
@@ -59,12 +57,12 @@ const deleteID = (req, res) => {
 
 const updateID = (req, res) => {
     const { id } = req.params;
-    const { post_title, post_body } = req.body;
+    const { tag_title, tag_body } = req.body;
 
-    Posts
-      .findByIdAndUpdate(id, { post_title, post_body })
-      .then(prevPost => {
-          res.status(200).json({Success: `${id} successfully updated`, prevPost})
+    Tags
+      .findByIdAndUpdate(id, { tag_body })
+      .then(prevTag => {
+          res.status(200).json({Success: `${id} successfully updated`, prevTag})
       })
       .catch(err => {
           res.status(500).json({Error: err.message});
