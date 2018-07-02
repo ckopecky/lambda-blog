@@ -9,7 +9,7 @@ import {
 export const fetchPosts = () => {
   let payload;
   axios.get('https://jsonplaceholder.typicode.com/posts').then(res => {
-    payload = res.data;
+    payload = res.json();
   });
   return {
     type: FETCH_POSTS,
@@ -20,7 +20,7 @@ export const fetchPosts = () => {
 export const fetchPost = id => {
   let payload;
   axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`).then(res => {
-    payload = res.data;
+    payload = res.json();
   });
   return {
     type: FETCH_POST,
@@ -44,7 +44,7 @@ export const editPost = (id, post) => {
   axios
     .post(`https://jsonplaceholder.typicode.com/posts/${id}`, post)
     .then(res => {
-      payload = res.data;
+      payload = res.json();
     });
 
   return {
@@ -56,7 +56,7 @@ export const editPost = (id, post) => {
 export const createPost = post => {
   let payload;
   axios.post(`https://jsonplaceholder.typicode.com/posts`, post).then(res => {
-    payload = res.data;
+    payload = res.json();
   });
   return {
     type: CREATE_POST,
