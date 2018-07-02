@@ -1,25 +1,10 @@
 import React from "react";
 import {bindActionCreators} from 'redux';
-import {logIn} from '../actions/index';
+import {connect} from 'react-redux';
+import {loginUser} from '../actions/actions_user';
+
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: ''
-        }
-    }
-
-handleChange = (e) => {
-    this.setState({[e.target.name]: e.target.value})
-}
-
-submitLogIn = () => {
-    window.localStorage.setItem('username', this.state.username);
-    window.location.reload();
-  }
-
     render() {
 
     return (
@@ -28,24 +13,27 @@ submitLogIn = () => {
             type="text"
             name='username'
             placeholder="username"
-            onChange={this.handleChange}
             />
         <input 
             type="text"
             name='password'
             placeholder="password"
-            onChange={this.handleChange}
             />
-        <button onClick={this.submitLogin}>Log In</button>
+        <button onClick={this.props.loginUser}>Log In</button>
             </div>
     )
 }
         
 }
 
-
-function matchDispatchToProps(dispatch) {
-    return bindActionCreators({logIn: logIn}, dispatch)
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
 }
 
-export default Login;
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators({loginUser: loginUser}, dispatch)
+}
+
+export default connect(matchDispatchToProps, mapStateToProps)(Login);
