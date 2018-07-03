@@ -8,7 +8,6 @@ const User = require('../../schemas/UserSchema');
 const get = (req, res) => {
     User
       .find()
-      .populate('cohort_name')
       .select({ _id: 1, username: 1})
       .then(users => {
           res.status(200).json(users);
@@ -23,7 +22,6 @@ const getProfile = (req, res) => {
     const { id } = req.params;
     User
       .findById(id)
-      .populate('cohort_name')
       .then(user => {
           res.status(200).json(user)
       })

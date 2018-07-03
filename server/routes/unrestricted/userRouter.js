@@ -22,7 +22,6 @@ const tokenGenerator = (user) => {
 const getRoot = (req, res) => {
     User
         .find()
-        .populate('cohort_name')
         .select({ _id:0, username: 1, cohort_name: 1})
         .then(users => {
             res.status(200).json(users);
