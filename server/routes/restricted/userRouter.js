@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const User = require('../../schemas/UserSchema');
+const User = require('../../schemas/UserSchema')
 
 // "/api/auth/"
 
@@ -17,7 +17,6 @@ const get = (req, res) => {
       });
 }
 
-
 const getProfile = (req, res) => {
     const { id } = req.params;
     User
@@ -30,30 +29,48 @@ const getProfile = (req, res) => {
       });
 };
 
+
 // const postProfile = (req, res) => {
 //  ** this will be done on unrestricted side in registration**
 // };
 
 const deleteProfile = (req, res) => {
-    const { id } = req.params;
-    User
-    .findByIdAndRemove(id)
+  const { id } = req.params
+  User.findByIdAndRemove(id)
     .then(user => {
-        res.status(200).json({Success: `${id} successfully removed from the database`, user});
+      res
+        .status(200)
+        .json({ Success: `${id} successfully removed from the database`, user })
     })
     .catch(err => {
-        res.status(500).json({Error: err.message});
-    });
-
-};
+      res.status(500).json({ Error: err.message })
+    })
+}
 
 const updateProfile = (req, res) => {
-    const { id } = req.params;
-    const { username, firstName, lastName, password, cohort_name, skills, job_interests, about } = req.body;
-    User
-    .findByIdAndUpdate(id, { username, firstName, lastName, password, cohort_name, skills, job_interests, about })
+  const { id } = req.params
+  const {
+    username,
+    firstName,
+    lastName,
+    password,
+    cohort_name,
+    skills,
+    job_interests,
+    about
+  } = req.body
+  User.findByIdAndUpdate(id, {
+    username,
+    firstName,
+    lastName,
+    password,
+    cohort_name,
+    skills,
+    job_interests,
+    about
+  })
     .then(user => {
-        res.status(200).json({Success: `${id} successfully updated`}, user)
+      res.status(200).json({ Success: `${id} successfully updated` }, user)
     })
     .catch(err => {
         res.status(500).json({Error: err.message});
@@ -69,8 +86,12 @@ router.route('/users/:id')
     .put(updateProfile);
 
 
+router.route('/user').get(get)
 
+router
+  .route('/user/:id')
+  .get(getProfile)
+  .delete(deleteProfile)
+  .put(updateProfile)
 
-
-
-module.exports = router;
+module.exports = router
