@@ -4,7 +4,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../../schemas/UserSchema');
 
-//   "/api/user"
+//   "/api/users"
 
 const tokenGenerator = (user) => {
     const options = {
@@ -22,7 +22,8 @@ const tokenGenerator = (user) => {
 const getRoot = (req, res) => {
     User
         .find()
-        .select({ _id:0, username: 1 })
+        .populate('cohort_name')
+        .select({ _id:0, username: 1, cohort_name: 1})
         .then(users => {
             res.status(200).json(users);
         })
@@ -32,9 +33,11 @@ const getRoot = (req, res) => {
 };
 
 const register = (req, res) => {
-    const { username, password } = req.body;
-    User.create({ username, password })
+ const { username, password, cohort_name, skills, job_interests, about } = req.body;
+    const profile = { username, password, cohort_name, skills, job_interests, about };
+    User.create(profile)
         .then(user => {
+            console.log(user);
             const token = tokenGenerator(user);
             res.status(201).json({message: `Welcome, ${user.username}`, token})
         })

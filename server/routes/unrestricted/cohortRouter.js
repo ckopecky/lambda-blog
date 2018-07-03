@@ -1,17 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const Posts = require("../../schemas/PostSchema")
+const Cohorts = require("../../schemas/CohortSchema")
 
 
-// "/api/posts/"
+// "/api/cohorts/"
 
 const get = (req, res) => {
-  Posts
+  Cohorts
     .find()
-    .populate('tag', { _id: 0 })
-    .then(posts => {
-        res.status(200).json(posts);
+    .then(cohorts => {
+        res.status(200).json(cohorts);
     })
     .catch(err => {
         res.status(500).json({Error: err.message});
@@ -19,11 +18,11 @@ const get = (req, res) => {
 };
 
 const post = (req, res) => {
-  const { post_title, post_body, tag} = req.body
-  Posts
-    .create({ post_title, post_body, tag })
-    .then(post => {
-        res.status(201).json(post);
+  const { cohort_name } = req.body
+  Cohorts
+    .create({ cohort_name })
+    .then(cohort => {
+        res.status(201).json(cohort);
     })
     .catch(err => {
         res.status(500).json({Error: err.message});
@@ -33,11 +32,10 @@ const post = (req, res) => {
 const getID = (req, res) => {
     const { id } = req.params;
     
-    Posts
+    Cohorts
       .findById(id)
-      .populate('tag', { _id: 0 })
-      .then(post => {
-          res.status(200).json(post);
+      .then(cohort => {
+          res.status(200).json(cohort);
       })
       .catch(err => {
           res.status(500).json({Error: err.message});
@@ -47,10 +45,10 @@ const getID = (req, res) => {
 const deleteID = (req, res) => {
     const { id } = req.params;
 
-    Posts
+    Cohorts
       .findByIdAndRemove(id)
-      .then(deletedPost => {
-          res.status(200).json({Success: `${id} successfully deleted from database`, deletedPost})
+      .then(deletedCohort => {
+          res.status(200).json({Success: `${id} successfully deleted from database`, deletedCohort})
       })
       .catch(err => {
           res.status(500).json({Error: err.message});
@@ -59,12 +57,12 @@ const deleteID = (req, res) => {
 
 const updateID = (req, res) => {
     const { id } = req.params;
-    const { post_title, post_body } = req.body;
+    const { cohort_name } = req.body;
 
-    Posts
-      .findByIdAndUpdate(id, { post_title, post_body })
-      .then(prevPost => {
-          res.status(200).json({Success: `${id} successfully updated`, prevPost})
+    Cohorts
+      .findByIdAndUpdate(id, { cohort_name })
+      .then(prevCohort => {
+          res.status(200).json({Success: `${id} successfully updated`, prevCohort})
       })
       .catch(err => {
           res.status(500).json({Error: err.message});
