@@ -33,8 +33,8 @@ const getRoot = (req, res) => {
 };
 
 const register = (req, res) => {
- const { username, password, cohort_name, skills, job_interests, about } = req.body;
-    const profile = { username, password, cohort_name, skills, job_interests, about };
+ const { username, firstName, lastName, password, cohort_name, skills, job_interests, about } = req.body;
+    const profile = { username, firstName, lastName, password, cohort_name, skills, job_interests, about };
     User.create(profile)
         .then(user => {
             console.log(user);
