@@ -24,7 +24,6 @@ const getProfile = (req, res) => {
     User
       .findById(id)
       .populate('cohort_name')
-      .select({ _id: 1, username: 1})
       .then(user => {
           res.status(200).json(user)
       })
@@ -38,11 +37,29 @@ const getProfile = (req, res) => {
 // };
 
 const deleteProfile = (req, res) => {
+    const { id } = req.params;
+    User
+    .findByIdAndRemove(id)
+    .then(user => {
+        res.status(200).json({Success: `${id} successfully removed from the database`, user});
+    })
+    .catch(err => {
+        res.status(500).json({Error: err.message});
+    });
 
 };
 
 const updateProfile = (req, res) => {
-
+    const { id } = req.params;
+    const { username, firstName, lastName, password, cohort_name, skills, job_interests, about } = req.body;
+    User
+    .findByIdAndUpdate(id, { username, firstName, lastName, password, cohort_name, skills, job_interests, about })
+    .then(user => {
+        res.status(200).json({Success: `${id} successfully updated`}, user)
+    })
+    .catch(err => {
+        res.status(500).json({Error: err.message});
+    });
 };
 
 router.route('/user')
