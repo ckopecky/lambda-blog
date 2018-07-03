@@ -62,10 +62,10 @@ const updateProfile = (req, res) => {
     });
 };
 
-router.route('/user')
+router.route('/users')
     .get(get);
 
-router.route('/user/:id')
+router.route('/users/:id')
     .get(getProfile)
     .delete(deleteProfile)
     .put(updateProfile);
