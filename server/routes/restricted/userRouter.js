@@ -6,26 +6,29 @@ const User = require('../../schemas/UserSchema')
 // "/api/auth/"
 
 const get = (req, res) => {
-  User.find()
-    .select({ _id: 1, username: 1 })
-    .then(users => {
-      res.status(200).json(users)
-    })
-    .catch(err => {
-      res.status(500).json({ Error: err.message })
-    })
+    User
+      .find()
+      .select({ _id: 1, username: 1})
+      .then(users => {
+          res.status(200).json(users);
+      })
+      .catch(err => {
+          res.status(500).json({Error: err.message});
+      });
 }
 
 const getProfile = (req, res) => {
-  const { id } = req.params
-  User.findById(id)
-    .then(user => {
-      res.status(200).json(user)
-    })
-    .catch(err => {
-      res.status(500).json({ Error: err.message })
-    })
-}
+    const { id } = req.params;
+    User
+      .findById(id)
+      .then(user => {
+          res.status(200).json(user)
+      })
+      .catch(err => {
+          res.status(500).json({Error: err.message});
+      });
+};
+
 
 // const postProfile = (req, res) => {
 //  ** this will be done on unrestricted side in registration**
@@ -70,9 +73,18 @@ const updateProfile = (req, res) => {
       res.status(200).json({ Success: `${id} successfully updated` }, user)
     })
     .catch(err => {
-      res.status(500).json({ Error: err.message })
-    })
-}
+        res.status(500).json({Error: err.message});
+    });
+};
+
+router.route('/users')
+    .get(get);
+
+router.route('/users/:id')
+    .get(getProfile)
+    .delete(deleteProfile)
+    .put(updateProfile);
+
 
 router.route('/user').get(get)
 

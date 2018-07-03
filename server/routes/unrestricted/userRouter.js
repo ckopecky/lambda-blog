@@ -19,15 +19,17 @@ const tokenGenerator = user => {
 }
 
 const getRoot = (req, res) => {
-  User.find()
-    .select({ _id: 1, username: 1 })
-    .then(users => {
-      res.status(200).json(users)
-    })
-    .catch(err => {
-      res.status(500).json({ Error: err.message })
-    })
-}
+    User
+        .find()
+        .select({ _id:0, username: 1, cohort_name: 1})
+        .then(users => {
+            res.status(200).json(users);
+        })
+        .catch(err => {
+            res.status(500).json({Error: err.message});
+        });
+};
+
 
 const register = (req, res) => {
   const {
