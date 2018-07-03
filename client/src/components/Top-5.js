@@ -2,9 +2,7 @@ import React from 'react';
 import Styled from 'styled-components';
 
 const TopFiveContainer = Styled.div`
-    display: flex;
-    justify-content: space-around;
-    margin: 20px;
+    
 `;
 
 const BlogBox = Styled.div`
@@ -35,15 +33,19 @@ class TopFive extends React.Component {
             <BlogBox>
             <h4>1st ranked{this.state.first}</h4>
             </BlogBox>
+            <hr />
             <BlogBox>
             <h4>2nd ranked{this.state.second}</h4>
             </BlogBox>
+            <hr />
             <BlogBox>
             <h4>3rd ranked{this.state.third}</h4>
             </BlogBox>
+            <hr />
             <BlogBox>
             <h4>4th ranked{this.state.fourth}</h4>
             </BlogBox>
+            <hr />
             <BlogBox>
             <h4>5th ranked{this.state.fifth}</h4>
             </BlogBox>

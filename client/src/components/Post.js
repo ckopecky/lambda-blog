@@ -1,10 +1,24 @@
 import React from 'react';
+import Styled from 'styled-components';
+
+const Headline = Styled.h3`
+    font-family: 'PT Sans', sans-serif;
+    font-style: light;
+    text-align: left;
+`;
+
+const Body = Styled.p`
+    font-family: 'PT Sans', sans-serif;
+    font-style: light;
+    font-size: 14px;
+    text-align: left;
+`;
 
 const Post = props => {
     return (
         <div>
-        <h3>{props.post.title}</h3>
-        <p>{props.post.body}</p>
+        <Headline>{props.post.title}</Headline>
+        <Body>{props.post.body}</Body>
         </div>
     )
 }
