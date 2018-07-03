@@ -14,6 +14,9 @@ const definition = {
         reqquired: true,
         ref: "Tag"
     },
+    userId: {
+        type: String
+    },
     createdOn: {
         type: Date,
         default: Date.now
