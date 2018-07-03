@@ -22,18 +22,15 @@ const UserSchema = mongoose.Schema({
         minlength: 4
     },
     cohort_name: { 
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Cohort",
+        type: String,
         required: true
     },
     skills: {  
         type: String,
-        ref: "Skill",
         required: false
     },
     job_interests: {
         type: String,
-        ref: "Interest",
         required: false,
     },
     about: {
